@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
+// use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,8 +14,37 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+Route::get('/', function () {
+    return view('beforeauth.login');
+});
+
+Route::get('teacher-register', 'UserController@register');
+Route::get('teacher-login', 'UserController@login');
+Route::match(['get', 'post'] ,'/admin', 'AdminController@adminLogin');
+
+//Authentication Routes
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::get('dashboard', 'UserController@dashboard');
 // });
 
-Route::get('/', 'TestController@home');
+// Route::get('dashboard', 'UserController@dashboard');
+
+//Main Administrator's Route.
+Route::group(['middleware' => ['principal']], function () {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('dashboard', 'AdminController@dashboard');
+        Route::match(['get', 'post'] ,'/register', 'AdminController@adminRegister');
+        Route::resource('classes', 'StudentClassController');
+        Route::get('/logout', 'AdminController@logout');
+    });
+
+});
+
+Route::group(['middleware' => ['teacher']], function () {
+    Route::get('/mydashboard', 'UserController@userDashboard')->name('mydashboard');
+
+});
+
+
+// Auth::routes();
+
