@@ -1,5 +1,5 @@
 <?php
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
 
 // use Illuminate\Support\Facades\Route;
 
@@ -34,7 +34,14 @@ Route::group(['middleware' => ['principal']], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('dashboard', 'AdminController@dashboard');
         Route::match(['get', 'post'] ,'/register', 'AdminController@adminRegister');
+
+        //Class Routes
         Route::resource('classes', 'StudentClassController');
+
+        //Student Routes
+        Route::resource('students', 'StudentController');
+
+        //Administrator logout
         Route::get('/logout', 'AdminController@logout');
     });
 

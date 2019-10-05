@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Hash;
 use App\Admin;
 use Session;
 
@@ -20,7 +20,7 @@ class AdminController extends Controller
                 'password' => ['required','confirmed','min:8']
         ]);
     }
-
+//
     public function adminRegister(Request $request)
     {
         if($request->isMethod('post')){
