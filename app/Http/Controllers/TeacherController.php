@@ -8,6 +8,7 @@ use App\Subject;
 use App\StudentClass;
 use App\TeacherSubject;
 use Illuminate\Http\Request;
+use App\TeacherClass;
 
 class TeacherController extends Controller
 {
@@ -86,9 +87,19 @@ class TeacherController extends Controller
     {
         //
         $teacher = Teacher::where(['id'=>$id])->first();
+        // $subjects = Subject::all();
+        //get all subjects that a single teacher teaches
         $subjects = Subject::all();
         $classes = StudentClass::all();
-        return view('admin.teacher/show')->with(compact('teacher', 'subjects', 'classes'));
+        foreach($teacher->subjects() as $subject){
+            $teacher_subjects = TeacherSubject::where(['teacher_id'=>$id])->get();
+            // dd($teacher_subjects);
+        }
+        foreach($teacher->classes() as $class){
+            $teacher_classes = TeacherClass::where(['teacher_id'=>$id])->get();
+            // dd($teacher_subjects);
+        }
+        return view('admin.teacher/show')->with(compact('teacher', 'teacher_classes', 'teacher_subjects', 'classes', 'subjects'));
     }
 
     /**
@@ -163,34 +174,4 @@ class TeacherController extends Controller
         }
     }
 
-    public function assignSubjects(Request $request){
-        if($request->isMethod('post'))
-        {
-            //validate user input
-            $this->validate($request, [
-                'subject_id' => 'required'
-            ]);
-            // $data = $request->all();
-            // dd($data);
-
-            // $teacher = TeacherSubject::insert([
-            //     'teacher_id' => $data['teacher_id'],
-            //     'subject_id' => $data['subject_id']
-            // ]);
-            $teacher = new TeacherSubject();
-            $teacher->teacher_id = $request->input('teacher_id');
-            $teacher->subject_id = $request->subject_id;
-            $teacher->save();
-            if($teacher){
-                return redirect()->back()->with('success', 'Subjects assigned to teacher successfully');
-            }else {
-                return redirect()->back()->with('error', 'Failed to assign subjects to teacher, possible internal error');
-            }
-        }
-        // return response()->json("This is actually shocking to me because things are not really ok");
-        // $teacher = Teacher::where(['id'=>$id])->first();
-        // if($teacher->count() > 0){
-        //     return redirect('/admin/classes')->with('success','Assigning subjects to teachers is finally working.');
-        // }
-    }
 }

@@ -54,7 +54,8 @@ Route::group(['middleware' => ['principal']], function () {
 
         //Teachers Route
         Route::resource('teachers', 'TeacherController');
-        Route::post('assign-subject/', 'TeacherController@assignSubjects');
+        Route::post('assign-subject/', 'TeacherSubjectController@assignSubjects');
+        Route::post('assign-class/', 'TeacherSubjectController@assignClasses');
     });
 
 });
