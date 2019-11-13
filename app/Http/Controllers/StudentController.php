@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Student;
 use App\StudentClass;
 use Illuminate\Http\Request;
+use Redirect;
+use Illuminate\Support\Facades\Input;
+use Image;
 
 class StudentController extends Controller
 {
@@ -17,7 +20,9 @@ class StudentController extends Controller
     {
         //
         $students = Student::all();
-        return view('admin.student/index')->with(compact('students'));
+        $classes = StudentClass::all();
+        // $student_class = StudentClass::where('name', '%like%', 'student_class')->get();
+        return view('admin.student/index')->with(compact('students', 'classes'));
     }
 
     /**
@@ -41,14 +46,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+
         //
         if($request->isMethod('post'))
         {
             $data = $request->all();
-
+            // dd($data);
 
             //Validate user input
-            return $this->validate($request, [
+            $this->validate($request, [
                 'first_name' => 'required|min:3|string|max:20',
                 'middle_name' => 'required|min:3|string|max:20',
                 'last_name' => 'min:3|string|max:20',
@@ -63,8 +69,50 @@ class StudentController extends Controller
                 'school_last_attended' => 'min:5|max:100',
                 'class_id' => 'required|integer',
                 'sex' => 'required',
-                // 'student_image' => 'file'
+                'student_image' => 'file'
             ]);
+
+            //handle student file upload
+
+            // if ($request->hasFile('student_image')) {
+            //     // filename with extension
+            //     $fileNameWithExt = $request->file('student_image')->getClientOriginalName();
+            //     // filename
+            //     $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //     // extension
+            //     $extension = $request->file('student_image')->getClientOriginalExtension();
+            //     // filename to store
+            //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            //     $some_random = rand(111,9999);
+            //     // dd($some_random);
+            //     // upload file
+            //     $path = $request->file('student_image')->storeAs('public/files', $fileNameToStore);
+            //     // dd($path);
+            // }
+             //Upload Image
+             if($request->hasFile('student_image')){
+               $image_tmp = Input::file('student_image');
+                if($image_tmp->isValid()){
+
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename = rand(111,99999).'.'.$extension;
+                    $large_image_path = 'images/backend_images/products/large/'.$filename;
+                    $medium_image_path = 'images/backend_images/products/medium/'.$filename;
+                    $small_image_path = 'images/backend_images/products/small/'.$filename;
+
+                    //Resize images
+                    Image::make($image_tmp)->save($large_image_path);
+                    Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
+
+                    //Store image name in products table
+                    // $product->image = $filename;
+
+
+
+                }
+            }
 
             $student = Student::insert([
 
@@ -82,14 +130,17 @@ class StudentController extends Controller
                 'school_last_attended' => $data['school_last_attended'],
                 'class_id' => $data['class_id'],
                 'sex' => $data['sex'],
+                'student_image' => $filename
 
             ]);
+
+            dd($student);
 
 
 
             if($student)
             {
-                return redirect('/admin/students')->with('success', 'Student Added Successfully');
+                return Redirect::to('/admin/students')->with('success', 'Student Added Successfully');
             }else {
                 return redirect()->back()->with('error', 'Failed to Add student, possible internal error');
             }
@@ -106,8 +157,15 @@ class StudentController extends Controller
     public function show($id=null)
     {
         //
-        $student = Student::findOrFail($id);
-        return view('admin.student/show')->with(compact('student'));
+        //display all students inorder to count them in the student individual pages
+        $students = Student::all();
+        $student = Student::where(['id'=>$id])->first();
+        if($student){
+            return view('admin.student/show')->with(compact('student', 'students'));
+        }else {
+            abort(404);
+        }
+
     }
 
     /**
@@ -139,7 +197,7 @@ class StudentController extends Controller
         {
             $data = $request->all();
             //Validate User data
-             return $this->validate($request, [
+            $this->validate($request, [
                 'first_name' => 'required|min:3|string|max:20',
                 'middle_name' => 'required|min:3|string|max:20',
                 'last_name' => 'min:3|string|max:20',
@@ -199,6 +257,26 @@ class StudentController extends Controller
             return redirect()->back()->with('success', 'Student Deleted Successfully');
         }else {
             return redirect()->back()->with('error', 'Unable to delete student');
+        }
+    }
+
+    public function class_student_search(Request $request)
+    {
+        if($request->isMethod('post'))
+        {
+            $data = $request->all();
+            $student_class = $data['student_class'];
+            $classes = StudentClass::all();
+
+            $class_ids = Student::with('student_class')->pluck('class_id')->first();
+
+            $class_name = StudentClass::where(['id'=>$class_ids])->pluck('name');
+
+            $ret = json_decode(json_encode($class_name));
+            // echo "<pre>"; print_r($ret); die;
+
+            $students = Student::where($class_name, 'like', '%'.$student_class.'%')->get();
+             return view('admin.student/index')->with(compact('students', 'classes'));
         }
     }
 }

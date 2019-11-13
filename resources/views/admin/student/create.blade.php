@@ -28,7 +28,7 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-              <form action="{{ url('admin/students') }}" method="post">
+              <form action="{{ url('admin/students') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="container">
 

@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h3>
-            Detail Information For: 
+            Detail Information For:
             <small>{{ $class->name }}</small>
         </h3>
         <ol class="breadcrumb">
@@ -36,7 +36,7 @@
                     <div class="inner">
                     <h4>Number Of Students<sup style="font-size: 10px"></sup></h4>
 
-                    {{-- <h4 class="btn btn-primary">{{ $students->count() }}</h4> --}}
+                    <h4 class="btn btn-primary">{{ $students->count() }}</h4>
                     </div>
                     <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -92,7 +92,7 @@
                                                 <a href="{{ url('admin/students/'.$student->id) }}" title="View Student Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
                                             </td>
                                         </tr>
-                                    @endforeach       
+                                    @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>

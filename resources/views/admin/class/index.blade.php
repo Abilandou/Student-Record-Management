@@ -57,47 +57,41 @@
                                     </td>
                                 </tr>
 
-
                                 <div class="modal fade" id="modal-default{{ $class->id }}">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Editing... {{ $class->name }}</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Required Field(s) is(are) marked<b class="text-danger">*</b></p>
-                                                <form action="{{ url('/admin/classes/'.$class->id) }}" method="post">
-
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="_method" value="put" />
-                                                <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}" /> -->
-                                                    <div class="form-group has-feedback">
-                                                        <label for="name">Class Name<b class="text-danger">*</b> </label>
-                                                        <input type="text" name="name" value="{{ $class->name }}" class="form-control" placeholder="Class Name">
-
-                                                    </div>
-                                                    <div class="form-group has-feedback">
-                                                            <label for="name">Class Description </label>
-                                                            <textarea name="description" placeholder="description" class="form-control">{{ $class->description }}</textarea>
-
-                                                    </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Edit Class</button>
-                                            </form>
-                                            </div>
-                                            </div>
-                                            <!-- /.modal-content -->
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Editing... {{ $class->name }}</h4>
                                         </div>
-                                        <!-- /.modal-dialog -->
+                                        <div class="modal-body">
+                                            <p>Required Field(s) is(are) marked<b class="text-danger">*</b></p>
+                                            <form action="{{ url('/admin/classes/'.$class->id) }}" method="post">
+
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="_method" value="put" />
+                                            <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}" /> -->
+                                                <div class="form-group has-feedback">
+                                                    <label for="name">Class Name<b class="text-danger">*</b> </label>
+                                                    <input type="text" name="name" value="{{ $class->name }}" class="form-control" placeholder="Class Name">
+
+                                                </div>
+                                                <div class="form-group has-feedback">
+                                                        <label for="name">Class Description </label>
+                                                        <textarea name="description" placeholder="description" class="form-control">{{ $class->description }}</textarea>
+                                                </div>
                                         </div>
-
-
-
-
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Edit Class</button>
+                                        </form>
+                                        </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
 
                             @endforeach
                         @else
@@ -148,9 +142,8 @@
 
                 </div>
                 <div class="form-group has-feedback">
-                        <label for="name">Class Description </label>
-                        <textarea name="description" placeholder="description" class="form-control"></textarea>
-
+                    <label for="name">Class Description </label>
+                    <textarea name="description" placeholder="description" class="form-control"></textarea>
                 </div>
         </div>
         <div class="modal-footer">

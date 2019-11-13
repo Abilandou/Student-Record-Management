@@ -1,4 +1,6 @@
 <?php
+// use Symfony\Component\Routing\Annotation\Route;
+
 // use Illuminate\Support\Facades\Route;
 
 // use Illuminate\Support\Facades\Route;
@@ -43,6 +45,16 @@ Route::group(['middleware' => ['principal']], function () {
 
         //Administrator logout
         Route::get('/logout', 'AdminController@logout');
+
+        //Display students based on their class
+        Route::post('student-class', 'StudentController@class_student_search');
+
+        //Subjects Route
+        Route::resource('subjects', 'SubjectController');
+
+        //Teachers Route
+        Route::resource('teachers', 'TeacherController');
+        Route::post('assign-subject/', 'TeacherController@assignSubjects');
     });
 
 });

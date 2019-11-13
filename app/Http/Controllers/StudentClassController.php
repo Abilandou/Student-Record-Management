@@ -70,10 +70,16 @@ class StudentClassController extends Controller
     public function show($id=null)
     {
         //
-        $class = StudentClass::findOrFail($id);
-        //get students of a single class
+        // $class = StudentClass::findOrFail($id);
         $students = Student::where(['class_id'=>$id])->get();
-        return view('admin.class/show')->with(compact('class', 'students'));
+        $class = StudentClass::where(['id' => $id])->first();
+        if($class)
+        {
+            return view('admin.class/show')->with(compact('class', 'students'));
+        }else {
+            abort(404);
+        }
+
     }
 
     /**
@@ -97,36 +103,32 @@ class StudentClassController extends Controller
      * @param  \App\StudentClass  $studentClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id=null)
+    public function update(Request $request, $id)
     {
-        // return view('admin.class/index');
         //
         if($request->isMethod('put'))
         {
             $data = $request->all();
-            // $test = json_decode(json_encode($data));
-            // echo "<pre>"; print_r($test); die;
 
             //Validate input
             $this->validate($request, [
-                'name' => 'required|min:3',
+                'name' => 'required|min:3'
             ]);
 
             $class = StudentClass::where(['id'=>$id])->update([
                 'name' => $data['name'],
                 'description' => $data['description']
             ]);
-            
+
             if($class)
             {
-                return redirect('admin/classes')->with('success', 'Class Updated Successfully');
+                return redirect('admin/classes')->with('success', 'Class '.$data['name'].' Updated Successfully');
             }else {
-                return redirect()->back()->with('error', 'Unable to update class');
+                return redirect()->back()->with('error', 'Unable to edit class, possible internal error');
             }
 
 
         }
-        // return view('dashboard');
     }
 
     /**

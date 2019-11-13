@@ -32,7 +32,7 @@
                                                 <!-- small box -->
                                                 <div class="small-box">
                                                     <div class="inner">
-                                                    <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                                                    <img src="{{ $student->student_image }}" class="img-circle" alt="User Image">
                                                         <h4><a href="#" class="btn btn-default btn-mini">Edit profile...</a></h4>
                                                     </div>
                                                 </div>

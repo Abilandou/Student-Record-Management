@@ -39,7 +39,8 @@
         <ul class="treeview-menu">
           <li><a href="{{ url('admin/classes') }}"><i class="fa fa-circle-o"></i> Classes</a></li>
           <li><a href="{{ url('admin/students') }}"><i class="fa fa-circle-o"></i> Students</a></li>
-          <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Teachers</a></li>
+          <li><a href="{{url('admin/subjects')}}"><i class="fa fa-circle-o"></i> Subjects</a></li>
+          <li><a href="{{ url('admin/teachers') }}"><i class="fa fa-circle-o"></i> Teachers</a></li>
           <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
         </ul>
       </li>

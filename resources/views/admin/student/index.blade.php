@@ -23,7 +23,18 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Students </h3><a href="{{ url('admin/students/create') }}" class="btn btn-primary add-button" title="Add New Student">Add New</a>
+              <h3 class="box-title">Select Class 
+                <form action="{{ url('admin/student-class') }}" method="post">
+                  {{ csrf_field() }}
+
+                  <select name="student_class" class="form-control">
+                    @foreach($classes as $class)
+                      <option value="{{ $class->name }}">{{ $class->name }}</option>
+                    @endforeach
+                  </select>
+                  <button class="btn btn-primary">view</button>
+                </form> 
+              </h3><a href="{{ url('admin/students/create') }}" class="btn btn-primary add-button" title="Add New Student">Add New</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -34,6 +45,7 @@
                   <th>Full Name</th>
                   <th>Class</th>
                   <th>Phone</th>
+                  <th>Image</th>
                   <th>Date of Birth</th>
                   <th>Actions</th>
 
@@ -44,9 +56,10 @@
                         @foreach($students as $student)
                             <tr>
                                 <td>{{ $student->id }}</td>
-                                <td>{{ $student->first_name }} {{ $student->middle_name }} {{ $student->last_name }}</td>
+                                <td>{{ $student->full_name }}</td>
                                 <td>{{ $student->student_class->name }}</td>
                                 <td>{{ $student->student_phone }}</td>
+                                <td><img src="{{asset('public/files/'.$student->student_image) }}"></td>
                                 <td>{{ $student->date_of_birth }}</td>
                                 <td>
                                     <a href="{{ url('admin/students/'.$student->id) }}" title="View Student Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
@@ -74,7 +87,7 @@
                 <tfoot>
                 <tr>
                   <th>#</th>
-                  <th>First Name</th>
+                  <th>Full Name</th>
                   <th>Class</th>
                   <th>Phone</th>
                   <th>Date of Birth</th>
@@ -95,7 +108,6 @@
   </div>
   <!-- /.content-wrapper -->
 
-  
   <script>
     $(function () {
       $('#example1').DataTable()
