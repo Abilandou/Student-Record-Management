@@ -23,7 +23,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Subjects </h3><button  data-toggle="modal" data-target="#modal-default" class="btn btn-primary add-button" title="Add New Class">Add New</button>
+              <h3 class="box-title">Subjects </h3><button  data-toggle="modal" data-target="#modal-default" class="btn btn-primary add-button" title="Add New Subject"><i class="glyphicon glyphicon-plus"></i>ADD NEW</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -48,12 +48,12 @@
                                     <td>{{ $subject->type }}</td>
                                     <td>{{ $subject->description }}</td>
                                     <td>
-                                        <a href="{{ url('admin/subjects/'.$subject->id) }}" title="View Class Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                        <button data-toggle="modal" data-target="#modal-default{{ $subject->id }}" title="Edit Class" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-edit"></i></button>
+                                        <a href="{{ url('admin/subjects/'.$subject->id) }}" title="View Subject's Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                        <button data-toggle="modal" data-target="#modal-default{{ $subject->id }}" title="Edit Subject" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-pencil"></i></button>
                                         <form action="{{ url('admin/subjects/'.$subject->id) }}" method="post">
                                             <input type="hidden" name="_method" value="delete" />
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                            <button type="submit" title="Delete class" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-trash"></i> </button>
+                                            <button type="submit" title="Delete Subject" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-trash"></i> </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -173,7 +173,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Subject</button>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>SUBMIT DATA</button>
         </form>
         </div>
         </div>

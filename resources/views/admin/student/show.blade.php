@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h3>
-            Detail Information For: 
+            Detail Information For:
             <small>{{ $student->full_name }}</small>
         </h3>
         <ol class="breadcrumb">
@@ -33,13 +33,13 @@
                                                 <div class="small-box">
                                                     <div class="inner">
                                                     <img src="{{ $student->student_image }}" class="img-circle" alt="User Image">
-                                                        <h4><a href="#" class="btn btn-default btn-mini">Edit profile...</a></h4>
+                                                        <h4><a href="#" title="UNDER DEVELOPMENT :)" class="btn btn-default btn-mini"><i class="glyphicon glyphicon-pencil"></i>Edit profile...</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- ./col -->
                                             <div class="col-sm-4 col-xs-6 card bg-grey">
-                                                <div class="content"> 
+                                                <div class="content">
                                                     <p><b>Full Name:</b> {{ $student->full_name }}</p>
                                                     <p><b>Student Class:</b> {{ $student->student_class->name }}</p>
                                                     <p><b>Date of Birth:</b> {{ $student->date_of_birth }}</p>
@@ -69,7 +69,7 @@
                         <!-- /.row -->
                     </section>
                 </div>
-            </div> 
+            </div>
         </div>
     </section>
     <section class="content">
@@ -83,7 +83,7 @@
                             <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                <h3 class="box-title">Other Attributes</h3><button  data-toggle="modal" data-target="#modal-default" class="btn btn-primary add-button" title="Add New Class">Add Attributes</button>
+                                <h3 class="box-title">Other Attributes</h3><button  data-toggle="modal" data-target="#modal-default" class="btn btn-primary add-button" title="Add Student Attributes"><i class="glyphicon glyphicon-plus"></i>ADD ATTRIBUTES</button>
                                 </div>
 
                                 <!-- /.box-header -->
@@ -108,7 +108,7 @@
                                     <td> classdescription </td>
                                     <td>
                                         <!-- <a href="{{ url('admin/classes/') }}" title="View Class Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                       
+
                                         <button data-toggle="modal" data-target="#modal-default" title="Edit Class" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-edit"></i></button>
 
                                         <form action="{{ url('admin/classes/') }}" method="post">
@@ -147,7 +147,7 @@
                         <!-- /.row -->
                     </section>
                 </div>
-            </div> 
+            </div>
         </div>
     </section>
 </div>
@@ -177,7 +177,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Class</button>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>SUBMIT ATTRIBUTES</button>
         </form>
         </div>
         </div>

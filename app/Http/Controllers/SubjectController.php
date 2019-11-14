@@ -74,7 +74,7 @@ class SubjectController extends Controller
     public function show($id)
     {
         //
-        $subject = Subject::findOrFail($id);
+        $subject = Subject::where(['id'=>$id])->first();
         return view('admin.subject/show')->with(compact('subject'));
     }
 
@@ -87,7 +87,7 @@ class SubjectController extends Controller
     public function edit($id)
     {
         //
-        $subject = Subject::findOrFail($id);
+        $subject = Subject::where(['id'=>$id])->first();
         return view('admin.subject/index')->with(compact('subject'));
     }
 

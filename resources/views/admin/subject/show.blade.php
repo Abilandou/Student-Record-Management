@@ -5,7 +5,7 @@
     <section class="content-header">
         <h3>
             Detail Information For:
-            <small>{{ $class->name }}</small>
+            <small>{{ $subject->name }}</small>
         </h3>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,7 +22,7 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h4>Name</h4>
-                        <p>{{ $class->name }}</p>
+                        <p>{{ $subject->name }}</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person"></i>
@@ -36,7 +36,7 @@
                     <div class="inner">
                     <h4>Number Of Students<sup style="font-size: 10px"></sup></h4>
 
-                    <h4 class="btn btn-primary">{{ $students->count() }}</h4>
+                    {{-- <h4 class="btn btn-primary">{{ $students->count() }}</h4> --}}
                     </div>
                     <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -49,7 +49,7 @@
                 <div class="small-box bg-yellow">
                     <div class="inner">
                         <h4>Description</h4>
-                        <p>{{ $class->description }}</p>
+                        <p>{{ $subject->description }}</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person"></i>
@@ -65,11 +65,11 @@
                             <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                <h3 class="box-title">Students In {{ $class->name }} </h3>
+                                <h3 class="box-title">Students In {{ $subject->name }} </h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                <table id="example1" class="table table-bordered table-striped table-hoverable">
+                                {{-- <table id="example1" class="table table-bordered table-striped table-hoverable">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -104,7 +104,7 @@
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>
-                                </table>
+                                </table> --}}
                                 </div>
                                 <!-- /.box-body -->
                             </div>

@@ -13,6 +13,6 @@ class Subject extends Model
 
     public function teacher()
     {
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsToMany(Teacher::class);
     }
 }

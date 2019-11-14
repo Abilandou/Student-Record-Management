@@ -226,7 +226,7 @@
                                @foreach($classes as $class)
                                 <option value="{{ $class->id }}" >{{ $class->name }}</option>
                                @endforeach
-                               
+
                              </select>
                           </div>
                         <!-- /.input group -->
@@ -252,7 +252,7 @@
                     <div class="form-group">
                       <div class="input-group">
                        <input type="hidden" name="full_name" >
-                        <button type="submit" class="btn btn-success pull-right submit-button ">Confirm</button>
+                        <button type="submit" title="Submit Data" class="btn btn-success submit-button "><i class="glyphicon glyphicon-plus"></i>SUBMIT</button>
                       </div>
                     </div>
                   </div>

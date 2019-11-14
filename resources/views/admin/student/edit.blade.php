@@ -7,7 +7,7 @@
     <section class="content-header">
       <h1>
        Editing...
-        <small>{{ $student->full_name }}</small>
+        <small><b class="text-success">{{ $student->full_name }}</b></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -227,7 +227,7 @@
                                @foreach($classes as $class)
                                 <option value="{{ $class->id }}" @if($class->id == $student->class_id) selected @endif>{{ $class->name }}</option>
                                @endforeach
-                               
+
                              </select>
                           </div>
                         <!-- /.input group -->
@@ -253,7 +253,7 @@
                     <div class="form-group">
                       <div class="input-group">
                        <input type="hidden" name="full_name" >
-                        <button type="submit" class="btn btn-success pull-right submit-button ">Confirm</button>
+                        <button type="submit" title="Submit edited student data" class="btn btn-success pull-right submit-button "><i class="glyphicon glyphicon-pencil"></i>SUBMIT EDIT</button>
                       </div>
                     </div>
                   </div>

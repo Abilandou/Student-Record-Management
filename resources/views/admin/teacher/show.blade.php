@@ -37,7 +37,7 @@
                                                 <div class="small-box">
                                                     <div class="inner">
                                                     <img src="{{ $teacher->teacher_image }}" class="img-circle" title="STILL UNDER DEVELOPMENT" alt="User Image">
-                                                        <h4><a href="#" class="btn btn-default btn-mini" title="STILL UNDER DEVELOPMENT :)">Edit profile...</a></h4>
+                                                        <h4><a href="#" class="btn btn-default btn-mini" title="STILL UNDER DEVELOPMENT :)"><i class="glyphicon glyphicon-edit"></i>Edit profile...</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,7 +81,7 @@
                             <div class="col-xs-12">
                                 <div class="box">
                                     <div class="box-header">
-                                        <h3 class="box-title">Teachers Subjects</h3><button  data-toggle="modal" data-target="#assign-subjcets" class="btn btn-primary add-button" title="Assign subjects to this Teacher">Assign Subjects</button>
+                                        <h3 class="box-title">Teachers Subjects</h3><button  data-toggle="modal" data-target="#assign-subjcets" class="btn btn-primary add-button" title="Assign subjects to this Teacher"><i class="glyphicon glyphicon-plus"></i>Assign Subjects</button>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
@@ -95,7 +95,6 @@
                                             <th>Coefficient</th>
                                             <th>Type</th>
                                             <th>Actions</th>
-
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -103,19 +102,18 @@
                                                     @foreach($teacher_subjects as $teacher_subject)
                                                         <tr>
                                                             <td>{{ $teacher_subject->id }} </td>
-                                                            <td> {{ $teacher_subject->subjects['name'] }} </td>
+                                                            <td> {{ $teacher_subject->name }} </td>
                                                             <td> {{ $teacher_subject->description }} </td>
                                                             <td> {{ $teacher_subject->coefficient }} </td>
                                                             <td> {{ $teacher_subject->type }} </td>
                                                             <td>
                                                                 <form action="{{ url('admin/classes/') }}" method="post">
-                                                                <input type="hidden" name="_method" value="delete" />
-                                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                                <button type="submit" title="UnAssign This subject To This Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-trash"></i> </button>
+                                                                    <input type="hidden" name="_method" value="delete" />
+                                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                                    <button type="submit" title="UnAssign This subject To This Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-remove"></i> </button>
                                                                 </form>
                                                             </td>
                                                         </tr>
-
                                                  @endforeach
                                                 @else
                                                     <tr>
@@ -158,7 +156,7 @@
                             <div class="col-xs-12">
                                 <div class="box">
                                     <div class="box-header">
-                                        <h3 class="box-title">Teachers Classes</h3><button  data-toggle="modal" data-target="#assign-class" class="btn btn-primary add-button" title="Assign classes to this Teacher">Assign Classes</button>
+                                        <h3 class="box-title">Teachers Classes</h3><button  data-toggle="modal" data-target="#assign-class" class="btn btn-primary add-button" title="Assign classes to this Teacher"><i class="glyphicon glyphicon-plus"></i>Assign Classes</button>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
@@ -184,12 +182,11 @@
                                                                     <form action="{{ url('admin/classes/') }}" method="post">
                                                                     <input type="hidden" name="_method" value="delete" />
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                                    <button type="submit" title="UnAssign This class to this Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-trash"></i> </button>
+                                                                    <button type="submit" title="UnAssign This class to this Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-remove"></i> </button>
                                                                     </form>
                                                                     </td>
                                                                 </td>
                                                             </tr>
-
                                                      @endforeach
                                                     @else
                                                         <tr>

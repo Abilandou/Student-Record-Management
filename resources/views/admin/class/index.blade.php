@@ -23,7 +23,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Classes </h3><button  data-toggle="modal" data-target="#modal-default" class="btn btn-primary add-button" title="Add New Class">Add New</button>
+              <h3 class="box-title">Classes </h3><button  data-toggle="modal" data-target="#modal-default" class="btn btn-primary add-button" title="Add New Class"><i class="glyphicon glyphicon-plus"></i>ADD NEW</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -46,8 +46,8 @@
                                     <td>{{ $class->description }}</td>
                                     <td>
                                         <a href="{{ url('admin/classes/'.$class->id) }}" title="View Class Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                       
-                                        <button data-toggle="modal" data-target="#modal-default{{ $class->id }}" title="Edit Class" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-edit"></i></button>
+
+                                        <button data-toggle="modal" data-target="#modal-default{{ $class->id }}" title="Edit Class" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-pencil"></i></button>
 
                                         <form action="{{ url('admin/classes/'.$class->id) }}" method="post">
                                         <input type="hidden" name="_method" value="delete" />
@@ -63,7 +63,7 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">Editing... {{ $class->name }}</h4>
+                                            <h4 class="modal-title">Editing... <b class="text-success">{{ $class->name }}</b></h4>
                                         </div>
                                         <div class="modal-body">
                                             <p>Required Field(s) is(are) marked<b class="text-danger">*</b></p>
@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Edit Class</button>
+                                            <button type="submit" title="Submit edited data" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i>SUBMIT EDIT</button>
                                         </form>
                                         </div>
                                         </div>
@@ -148,7 +148,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Class</button>
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>SUBMIT DATA</button>
         </form>
         </div>
         </div>

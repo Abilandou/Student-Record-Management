@@ -93,7 +93,7 @@ class TeacherController extends Controller
         $classes = StudentClass::all();
         foreach($teacher->subjects() as $subject){
             $teacher_subjects = TeacherSubject::where(['teacher_id'=>$id])->get();
-            // dd($teacher_subjects);
+            // dd($teacher_subjects[$subject]);
         }
         foreach($teacher->classes() as $class){
             $teacher_classes = TeacherClass::where(['teacher_id'=>$id])->get();

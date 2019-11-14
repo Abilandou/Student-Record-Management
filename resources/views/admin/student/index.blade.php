@@ -23,7 +23,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Select Class 
+              <h3 class="box-title">Select Class
                 <form action="{{ url('admin/student-class') }}" method="post">
                   {{ csrf_field() }}
 
@@ -33,12 +33,12 @@
                     @endforeach
                   </select>
                   <button class="btn btn-primary">view</button>
-                </form> 
-              </h3><a href="{{ url('admin/students/create') }}" class="btn btn-primary add-button" title="Add New Student">Add New</a>
+                </form>
+              </h3><a href="{{ url('admin/students/create') }}" class="btn btn-primary add-button" title="Add New Student"><i class="glyphicon glyphicon-plus"></i>ADD NEW</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped table-hoverable">
+              <table id="example1" class="table table-bordered table-responsive table-striped table-hoverable">
                 <thead>
                 <tr>
                   <th>#</th>
@@ -64,7 +64,7 @@
                                 <td>
                                     <a href="{{ url('admin/students/'.$student->id) }}" title="View Student Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
 
-                                    <a href="{{ url('admin/students/'.$student->id.'/edit') }}" title="Edit Student" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="{{ url('admin/students/'.$student->id.'/edit') }}" title="Edit Student" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-pencil"></i></a>
 
 
                                     <form action="{{ url('admin/students/'.$student->id) }}" method="post">
@@ -72,7 +72,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                     <button type="submit" title="Delete Student" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-trash"></i> </button>
                                     </form>
-                                  
+
                                     </td>
                                 </td>
                             </tr>
@@ -90,6 +90,7 @@
                   <th>Full Name</th>
                   <th>Class</th>
                   <th>Phone</th>
+                  <th>Image</th>
                   <th>Date of Birth</th>
                   <th>Actions</th>
                 </tr>
