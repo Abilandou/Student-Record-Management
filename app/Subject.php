@@ -11,7 +11,7 @@ class Subject extends Model
         'name', 'coefficient', 'type', 'description'
     ];
 
-    public function teacher()
+    public function teachers()
     {
         return $this->belongsToMany(Teacher::class);
     }

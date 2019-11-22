@@ -6,9 +6,7 @@ use App\Teacher;
 use App\Country;
 use App\Subject;
 use App\StudentClass;
-use App\TeacherSubject;
 use Illuminate\Http\Request;
-use App\TeacherClass;
 
 class TeacherController extends Controller
 {
@@ -87,19 +85,11 @@ class TeacherController extends Controller
     {
         //
         $teacher = Teacher::where(['id'=>$id])->first();
-        // $subjects = Subject::all();
         //get all subjects that a single teacher teaches
         $subjects = Subject::all();
         $classes = StudentClass::all();
-        foreach($teacher->subjects() as $subject){
-            $teacher_subjects = TeacherSubject::where(['teacher_id'=>$id])->get();
-            // dd($teacher_subjects[$subject]);
-        }
-        foreach($teacher->classes() as $class){
-            $teacher_classes = TeacherClass::where(['teacher_id'=>$id])->get();
-            // dd($teacher_subjects);
-        }
-        return view('admin.teacher/show')->with(compact('teacher', 'teacher_classes', 'teacher_subjects', 'classes', 'subjects'));
+
+        return view('admin.teacher/show')->with(compact('teacher', 'classes', 'subjects'));
     }
 
     /**

@@ -41,10 +41,10 @@
                         @if(count($classes) > 0)
                             @foreach($classes as $class)
                                 <tr>
-                                    <td>{{ $class->id }}</td>
-                                    <td>{{ $class->name }}</td>
-                                    <td>{{ $class->description }}</td>
-                                    <td>
+                                    <td class="table-data-item">{{ $class->id }}</td>
+                                    <td class="table-data-item">{{ $class->name }}</td>
+                                    <td class="table-data-item">{{ $class->description }}</td>
+                                    <td id="data-actions">
                                         <a href="{{ url('admin/classes/'.$class->id) }}" title="View Class Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
 
                                         <button data-toggle="modal" data-target="#modal-default{{ $class->id }}" title="Edit Class" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-pencil"></i></button>
@@ -79,6 +79,7 @@
                                                 </div>
                                                 <div class="form-group has-feedback">
                                                         <label for="name">Class Description </label>
+
                                                         <textarea name="description" placeholder="description" class="form-control">{{ $class->description }}</textarea>
                                                 </div>
                                         </div>

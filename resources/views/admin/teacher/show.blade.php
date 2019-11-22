@@ -98,14 +98,14 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                @if(count($teacher_subjects) > 0)
-                                                    @foreach($teacher_subjects as $teacher_subject)
+                                                {{-- @if(count($teachers) > 0) --}}
+                                                    @foreach($teacher->subjects as $subject)
                                                         <tr>
-                                                            <td>{{ $teacher_subject->id }} </td>
-                                                            <td> {{ $teacher_subject->name }} </td>
-                                                            <td> {{ $teacher_subject->description }} </td>
-                                                            <td> {{ $teacher_subject->coefficient }} </td>
-                                                            <td> {{ $teacher_subject->type }} </td>
+                                                            <td>{{ $subject->id }} </td>
+                                                            <td> {{ $subject->name }} </td>
+                                                            <td> {{ $subject->description }} </td>
+                                                            <td> {{ $subject->coefficient }} </td>
+                                                            <td> {{ $subject->type }} </td>
                                                             <td>
                                                                 <form action="{{ url('admin/classes/') }}" method="post">
                                                                     <input type="hidden" name="_method" value="delete" />
@@ -115,11 +115,11 @@
                                                             </td>
                                                         </tr>
                                                  @endforeach
-                                                @else
+                                                {{-- @else
                                                     <tr>
                                                         <td><h5 class="text-success">No Class Has Been Added Yet</h5></td>
                                                     </tr>
-                                                @endif
+                                                @endif --}}
                                             </tbody>
                                             <tfoot>
                                             <tr>
@@ -172,14 +172,14 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if(count($teacher_classes) > 0)
-                                                        @foreach($teacher_classes as $teacher_class)
+                                                    {{-- @if(count($teacher_classes) > 0) --}}
+                                                        @foreach($teacher->classes as $class)
                                                             <tr>
-                                                                <td>{{ $teacher_class->id }} </td>
-                                                                <td> {{ $teacher_class->subjects['name'] }} </td>
-                                                                <td> {{ $teacher_class->description }} </td>
+                                                                <td>{{ $class->id }} </td>
+                                                                <td> {{ $class->name }} </td>
+                                                                <td> {{ $class->description }} </td>
                                                                 <td>
-                                                                    <form action="{{ url('admin/classes/') }}" method="post">
+                                                                    <form action="{{ url('admin/remove-class/'.$class->id) }}" method="post">
                                                                     <input type="hidden" name="_method" value="delete" />
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                                     <button type="submit" title="UnAssign This class to this Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-remove"></i> </button>
@@ -188,11 +188,11 @@
                                                                 </td>
                                                             </tr>
                                                      @endforeach
-                                                    @else
+                                                    {{-- @else
                                                         <tr>
                                                             <td><h5 class="text-success">No Class Has Been Added Yet</h5></td>
                                                         </tr>
-                                                    @endif
+                                                    @endif --}}
                                                 </tbody>
                                                 <tfoot>
                                                 <tr>
@@ -267,7 +267,7 @@
                         <input type="hidden" name="teacher_id" value="{{ $teacher->id }}" />
                         <label for="teacherClass">Assign Classes To This Teacher</label><br/>
                         @foreach ($classes as $class)
-                            <input type="checkbox" name="class_id[]" value="{{ $class->id }}">
+                            <input type="checkbox" name="student_class_id[]" value="{{ $class->id }}">
                             <label for="class">{{ ucfirst($class->name) }}</label>
                         @endforeach
                     </div>

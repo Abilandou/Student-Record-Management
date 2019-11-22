@@ -134,10 +134,6 @@ class StudentController extends Controller
 
             ]);
 
-            dd($student);
-
-
-
             if($student)
             {
                 return Redirect::to('/admin/students')->with('success', 'Student Added Successfully');

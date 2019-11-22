@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TeacherSubject;
-use App\TeacherClass;
+use App\SubjectTeacher;
+use App\ClassTeacher;
 
-class TeacherSubjectController extends Controller
+class SubjectTeacherController extends Controller
 {
     //
     public function assignSubjects(Request $request){
@@ -24,7 +24,7 @@ class TeacherSubjectController extends Controller
             if(is_array($subject_ids)){
                 //loop through the array, and assign all selected IDs against a single teacher ID
                 foreach($subject_ids as $subject_id ){
-                    TeacherSubject::insert([
+                    SubjectTeacher::insert([
                         'teacher_id' => $input['teacher_id'],
                         'subject_id' => $subject_id
                     ]);
@@ -42,16 +42,16 @@ class TeacherSubjectController extends Controller
         {
             //Validate user inputs
             $this->validate($request, [
-                'class_id' => 'required'
+                'student_class_id' => 'required'
             ]);
             $data = $request->all();
             //Get all class IDs
-            $class_ids = $request->class_id;
+            $class_ids = $request->student_class_id;
             foreach($class_ids as $class_id)
             {
-                TeacherClass::insert([
+                ClassTeacher::insert([
                     'teacher_id' => $data['teacher_id'],
-                    'class_id' => $class_id
+                    'student_class_id' => $class_id
                 ]);
             }
             return redirect()->back()->with('success', 'Classes assigned to teacher successfully');
@@ -60,4 +60,18 @@ class TeacherSubjectController extends Controller
         }
     }
 
+    public function removeClass($id)
+    {
+        $class = ClassTeacher::where(['id'=>$id])->first();
+        if($class){
+            $class_id = $class->student_class_id;
+            $the_id = ClassTeacher::where(['student_class_id'=>$class_id])->first();
+            dd($the_id);
+            // $class_id->delete();
+            return redirect()->back()->with('success', 'Class unassigned to teacher successfully');
+        }else {
+            return redirect()->back()->with('error', 'No such class assigned to teacher or possible internal error');
+        }
+
+    }
 }

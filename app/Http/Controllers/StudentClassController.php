@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\StudentClass;
 use Illuminate\Http\Request;
 use App\Student;
+use App\Subject;
 
 class StudentClassController extends Controller
 {
@@ -71,11 +72,12 @@ class StudentClassController extends Controller
     {
         //
         // $class = StudentClass::findOrFail($id);
+        $subjects = Subject::all();
         $students = Student::where(['class_id'=>$id])->get();
         $class = StudentClass::where(['id' => $id])->first();
         if($class)
         {
-            return view('admin.class/show')->with(compact('class', 'students'));
+            return view('admin.class/show')->with(compact('class', 'students', 'subjects'));
         }else {
             abort(404);
         }
