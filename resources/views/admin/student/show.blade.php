@@ -41,7 +41,7 @@
                                             <div class="col-sm-4 col-xs-6 card bg-grey">
                                                 <div class="content">
                                                     <p><b>Full Name:</b> {{ $student->full_name }}</p>
-                                                    <p><b>Student Class:</b> {{ $student->student_class->name }}</p>
+                                                    <p><b>Student Class:</b> {{ $student->studentClass->name }}</p>
                                                     <p><b>Date of Birth:</b> {{ $student->date_of_birth }}</p>
                                                     <p><b>Place of Birth:</b> {{ $student->place_of_birth }}</p>
                                                     <p><b>Gender:</b> {{ $student->sex }}</p>

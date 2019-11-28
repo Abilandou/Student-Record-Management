@@ -15,7 +15,7 @@ class Student extends Model
     	'parent_phone', 'full_name'
     ];
 
-    public function student_class()
+    public function studentClass()
     {
     	return $this->belongsTo(StudentClass::class, 'class_id');
     }

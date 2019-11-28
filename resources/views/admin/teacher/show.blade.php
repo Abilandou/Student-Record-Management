@@ -107,11 +107,12 @@
                                                             <td> {{ $subject->coefficient }} </td>
                                                             <td> {{ $subject->type }} </td>
                                                             <td>
-                                                                <form action="{{ url('admin/classes/') }}" method="post">
+                                                            <a href="{{ url('admin/remove-subject/'.$subject->id) }}" ><button title="UnAssign This class to this Teacher" class="btn btn-danger delete-record btn-mini" ><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                                {{-- <form action="{{ url('admin/classes/') }}" method="post">
                                                                     <input type="hidden" name="_method" value="delete" />
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                                     <button type="submit" title="UnAssign This subject To This Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-remove"></i> </button>
-                                                                </form>
+                                                                </form> --}}
                                                             </td>
                                                         </tr>
                                                  @endforeach
@@ -179,11 +180,12 @@
                                                                 <td> {{ $class->name }} </td>
                                                                 <td> {{ $class->description }} </td>
                                                                 <td>
-                                                                    <form action="{{ url('admin/remove-class/'.$class->id) }}" method="post">
+                                                                    <a href="{{ url('admin/remove-class/'.$class->id) }}" ><button title="UnAssign This class to this Teacher" class="btn btn-danger delete-record btn-mini" ><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                                    {{-- <form action="{{ url('admin/remove-class/'.$class->id) }}" method="post">
                                                                     <input type="hidden" name="_method" value="delete" />
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                                     <button type="submit" title="UnAssign This class to this Teacher" class="btn btn-danger btn-mini delete-record"><i class="glyphicon glyphicon-remove"></i> </button>
-                                                                    </form>
+                                                                    </form> --}}
                                                                     </td>
                                                                 </td>
                                                             </tr>

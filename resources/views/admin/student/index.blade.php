@@ -57,7 +57,7 @@
                             <tr>
                                 <td>{{ $student->id }}</td>
                                 <td>{{ $student->full_name }}</td>
-                                <td>{{ $student->student_class->name }}</td>
+                                <td>{{ $student->studentClass->name }}</td>
                                 <td>{{ $student->student_phone }}</td>
                                 <td><img src="{{asset('public/files/'.$student->student_image) }}"></td>
                                 <td>{{ $student->date_of_birth }}</td>

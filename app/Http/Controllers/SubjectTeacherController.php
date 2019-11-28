@@ -62,16 +62,34 @@ class SubjectTeacherController extends Controller
 
     public function removeClass($id)
     {
-        $class = ClassTeacher::where(['id'=>$id])->first();
+        $class = ClassTeacher::where(['student_class_id'=>$id])->first();
         if($class){
             $class_id = $class->student_class_id;
+            // dd($class_id);
             $the_id = ClassTeacher::where(['student_class_id'=>$class_id])->first();
-            dd($the_id);
-            // $class_id->delete();
+            // dd($the_id);
+            //Finally delete it
+            // dd($the_id);
+            $the_id->delete();
             return redirect()->back()->with('success', 'Class unassigned to teacher successfully');
         }else {
             return redirect()->back()->with('error', 'No such class assigned to teacher or possible internal error');
         }
 
+    }
+
+    public function removeSubject($id)
+    {
+        $subject = SubjectTeacher::where(['subject_id'=>$id])->first();
+        // dd($subject);
+        if($subject){
+            $subject_id = $subject->subject_id;
+            $the_id = SubjectTeacher::where(['subject_id'=>$subject_id])->first();
+            //Finally delete it
+            $the_id->delete();
+            return redirect()->back()->with('success', 'Subject unassinged to teacher successfully');
+        }else {
+            return redirect()->back()->with('error', 'Unable to unassigned subject from teacher');
+        }
     }
 }
