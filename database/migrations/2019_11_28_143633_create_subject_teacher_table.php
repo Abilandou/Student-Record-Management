@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectTeachersTable extends Migration
+class CreateSubjectTeacherTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSubjectTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_teachers', function (Blueprint $table) {
+        Schema::create('subject_teacher', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('teacher_id');
             $table->bigInteger('subject_id');
@@ -31,6 +31,6 @@ class CreateSubjectTeachersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_teachers');
+        Schema::dropIfExists('subject_teacher');
     }
 }

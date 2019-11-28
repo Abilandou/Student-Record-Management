@@ -107,7 +107,7 @@
                                                             <td> {{ $subject->coefficient }} </td>
                                                             <td> {{ $subject->type }} </td>
                                                             <td>
-                                                            <a href="{{ url('admin/remove-subject/'.$subject->id) }}" ><button title="UnAssign This class to this Teacher" class="btn btn-danger delete-record btn-mini" ><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                            <a href="{{ url('admin/remove-subject/'.$subject->id) }}" ><button title="UnAssign This subject to this Teacher" class="btn btn-danger delete-record btn-mini" ><i class="glyphicon glyphicon-remove"></i></button></a>
                                                                 {{-- <form action="{{ url('admin/classes/') }}" method="post">
                                                                     <input type="hidden" name="_method" value="delete" />
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />

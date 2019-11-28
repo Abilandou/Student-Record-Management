@@ -12,6 +12,8 @@
             <li class="active">class detail</li>
         </ol>
     </section>
+    {{-- Call message to display on success or failiure --}}
+    @include('snippets.messages')
     <section class="content">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -68,42 +70,42 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                <table id="example1" class="table table-bordered table-striped table-hoverable">
-                                    <thead>
+                                    <table id="example1" class="table table-bordered table-striped table-hoverable">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Coefficient</th>
+                                                <th>Type</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($class->subjects as $subject)
+                                                <tr>
+                                                    <td>{{ $subject->id }} </td>
+                                                    <td> {{ $subject->name }} </td>
+                                                    <td> {{ $subject->description }} </td>
+                                                    <td> {{ $subject->coefficient }} </td>
+                                                    <td> {{ $subject->type }} </td>
+                                                    <td>
+                                                    <a href="{{ url('admin/class-remove-subject/'.$subject->id) }}" ><button title="UnAssign This subject to this Class" class="btn btn-danger delete-record btn-mini" ><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Full Name</th>
-                                            <th>Address</th>
-                                            <th>Phone</th>
-                                            <th>Date of Birth</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($students as $student)
-                                        <tr>
-                                            <td>{{ $student->id }}</td>
-                                            <td>{{ $student->full_name }}</td>
-                                            <td>{{ $student->student_address }}</td>
-                                            <td>{{ $student->student_phone }}</td>
-                                            <td>{{ $student->date_of_birth }}</td>
-                                            <td>
-                                                <a href="{{ url('admin/students/'.$student->id) }}" title="View Student Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
                                         <th>#</th>
-                                        <th>Full Name</th>
-                                        <th>Address</th>
-                                        <th>Phone</th>
-                                        <th>Date of Birth</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Coefficient</th>
+                                        <th>Type</th>
+                                        <th>Actions</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -189,10 +191,10 @@
             </div>
             <div class="modal-body">
                 <p>Select All That Apply</p>
-                <form action="{{ url('/admin/assign-subject') }}" method="post">
+                <form action="{{ url('/admin/class-assign-subject') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group has-feedback">
-                        <input type="hidden" name="class_id" value="{{ $class->id }}" />
+                        <input type="hidden" name="student_class_id" value="{{ $class->id }}" />
                         <label for="country">Assign Subjects To This Class</label><br/>
                         @foreach ($subjects as $subject)
                             <input type="checkbox" name="subject_id[]" multiple="multiple" value="{{ $subject->id }}">

@@ -56,8 +56,12 @@ Route::group(['middleware' => ['principal']], function () {
         Route::resource('teachers', 'TeacherController');
         Route::post('assign-subject/', 'SubjectTeacherController@assignSubjects');
         Route::post('assign-class/', 'SubjectTeacherController@assignClasses');
+        Route::post('class-assign-subject/', 'ClassSubjectController@assignSubjects');
         Route::get('remove-class/{id}', 'SubjectTeacherController@removeClass');
         Route::get('remove-subject/{id}', 'SubjectTeacherController@removeSubject');
+        Route::get('class-remove-subject/{id}', 'ClassSubjectController@removeSubject');
+        Route::post('student-assign-subject/', 'StudentSubjectController@assignSubjects');
+        Route::get('student-remove-subject/{id}', 'StudentSubjectController@removeSubject');
     });
 
 });

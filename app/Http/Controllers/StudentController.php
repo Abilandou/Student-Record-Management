@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Redirect;
 use Illuminate\Support\Facades\Input;
 use Image;
+use App\ClassSubject;
+use App\Subject;
 
 class StudentController extends Controller
 {
@@ -155,9 +157,12 @@ class StudentController extends Controller
         //
         //display all students inorder to count them in the student individual pages
         $students = Student::all();
+        $subjects = Subject::all();
         $student = Student::where(['id'=>$id])->first();
+        $class_id = $student->class_id;
+        $student_subjects = ClassSubject::where(['student_class_id'=>$class_id])->get();
         if($student){
-            return view('admin.student/show')->with(compact('student', 'students'));
+            return view('admin.student/show')->with(compact('student', 'students', 'student_subjects', 'subjects'));
         }else {
             abort(404);
         }
