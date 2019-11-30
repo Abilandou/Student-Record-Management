@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('country');
+            $table->string('teacher_image')->nullable();
             $table->timestamps();
         });
     }

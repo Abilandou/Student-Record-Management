@@ -55,17 +55,37 @@ class TeacherController extends Controller
                 'email' => 'required|email|unique:teachers',
                 'address' => 'required|min:3|max:50',
                 'phone' => 'required|unique:teachers|min:9',
-                'country' => 'required|min:3'
+                'country' => 'required|min:3',
+                'teacher_image' => 'mimes:jpg,jpeg,png,gif,svg'
             ]);
 
-            $teacher = Teacher::create([
-                'full_name' => $data['full_name'],
-                'email' => $data['email'],
-                'phone' => $data['phone'],
-                'country' => $data['country'],
-                'address' => $data['address']
-            ]);
+            $teacher = new Teacher();
+            $teacher->full_name = $request->full_name;
+            $teacher->email = $request->email;
+            $teacher->address = $request->email;
+            $teacher->phone = $request->phone;
+            $teacher->country = $request->country;
 
+            //Handle image upload for teacher
+            if($request->hasFile('teacher_image')){
+                // dd($request->file('teacher_image'));
+                 // filename with extension
+                 $fileNameWithExt = $request->file('teacher_image')->getClientOriginalName();
+                 // filename
+                 $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                 // extension
+                 $extension = $request->file('teacher_image')->getClientOriginalExtension();
+                 // filename to store
+                 $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+                 //storage folder
+                 $folder = 'images/teachers';
+                 // upload file
+                 $path = $request->file('teacher_image')->move($folder, $fileNameToStore);
+                $teacher->teacher_image = $path;
+            }
+            // dd($path);
+            $teacher->save();
             if($teacher)
             {
                 return redirect('admin/teachers')->with('success', 'Teacher '.$data['full_name'].' Added successfully');
@@ -126,15 +146,40 @@ class TeacherController extends Controller
                 'email' => 'required|email',
                 'address' => 'required|min:3|max:50',
                 'phone' => 'required|min:9',
-                'country' => 'required|min:3'
+                'country' => 'required|min:3',
+                'teacher_image' => 'mimes:jpg,jpeg,png,gif,svg'
             ]);
+
+            if($request->hasFile('teacher_image')){
+                // dd($request->file('teacher_image'));
+                 // filename with extension
+                 $fileNameWithExt = $request->file('teacher_image')->getClientOriginalName();
+                 // filename
+                 $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                 // extension
+                 $extension = $request->file('teacher_image')->getClientOriginalExtension();
+                 // filename to store
+                 $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+                 //storage folder
+                 $folder = 'images/teachers';
+                 // upload file
+                 $path = $request->file('teacher_image')->move($folder, $fileNameToStore);
+            }
+
+            if(empty($path)){
+                $the_image = Teacher::where(['id'=>$id])->first();
+                $teacher_image = $the_image->teacher_image;
+                $path = $teacher_image;
+            }
 
             $teacher = Teacher::where(['id'=>$id])->update([
                 'full_name' => $data['full_name'],
                 'email' => $data['email'],
                 'phone' => $data['phone'],
                 'country' => $data['country'],
-                'address' => $data['address']
+                'address' => $data['address'],
+                'teacher_image' => $path
             ]);
 
             if($teacher)

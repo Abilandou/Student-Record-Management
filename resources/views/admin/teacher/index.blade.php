@@ -35,6 +35,7 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Address</th>
+                        <th>Profile</th>
                         <th>Actions</th>
                         </tr>
                     </thead>
@@ -47,6 +48,7 @@
                                     <td>{{ $teacher->email }}</td>
                                     <td>{{ $teacher->phone }}</td>
                                     <td>{{ $teacher->address }}</td>
+                                    <td><img src="{{ asset($teacher->teacher_image) }}" alt="upload image." class="img-circle" height=60px width=60px></td>
                                     <td>
                                         <a href="{{ url('admin/teachers/'.$teacher->id) }}" title="View Teacher's Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
                                         <button data-toggle="modal" data-target="#modal-default{{ $teacher->id }}" title="Edit Teacher's Information" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-pencil"></i></button>
@@ -67,7 +69,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>Required Field(s) is(are) marked<b class="text-danger">*</b></p>
-                                            <form action="{{ url('/admin/teachers/'.$teacher->id) }}" method="post">
+                                            <form action="{{ url('/admin/teachers/'.$teacher->id) }}" method="post" enctype="multipart/form-data" >
 
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="put" />
@@ -97,6 +99,10 @@
                                                 <label for="address"> Address </label>
                                                 <input name="address" value="{{ $teacher->address }}" required placeholder="address" class="form-control" />
                                             </div>
+                                            <div class="form-group has-feedback">
+                                                <label for="teacher_image"> Teacher's Profile Photo(Optional) </label>
+                                                <input name="teacher_image" value="{{ $teacher->teacher_image }}" type="file" class="form-control" />
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -123,6 +129,7 @@
                       <th>Email</th>
                       <th>Phone</th>
                       <th>Address</th>
+                      <th>Profile</th>
                       <th>Actions</th>
                     </tr>
                     </tfoot>
@@ -152,7 +159,7 @@
         </div>
         <div class="modal-body">
             <p>Required Field(s) is(are) marked<b class="text-danger">*</b></p>
-            <form action="{{ url('admin/teachers') }}" method="post">
+            <form action="{{ url('admin/teachers') }}" method="post" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                 <div class="form-group has-feedback">
                         <label for="name">Name<b class="text-danger">*</b> </label>
@@ -178,6 +185,10 @@
                     <div class="form-group has-feedback">
                         <label for="address"> Address<b class="text-danger">*</b> </label>
                         <input name="address" required placeholder=" Teacher's Address" class="form-control" />
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="teacher_image"> Teacher's Profile Photo(Optional) </label>
+                        <input name="teacher_image" type="file" class="form-control" />
                     </div>
         </div>
         <div class="modal-footer">
