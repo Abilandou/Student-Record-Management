@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+// use Illuminate\Support\Facades\Input;
 use App\Student;
 use App\StudentClass;
 use Illuminate\Http\Request;
 use Redirect;
-use Illuminate\Support\Facades\Input;
 use Image;
 use App\ClassSubject;
 use App\Subject;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -71,51 +72,26 @@ class StudentController extends Controller
                 'school_last_attended' => 'min:5|max:100',
                 'class_id' => 'required|integer',
                 'sex' => 'required',
-                'student_image' => 'file'
+                'student_image' => 'mimes:jpg,jpeg,png,gif,svg'
             ]);
 
-            //handle student file upload
+            if ($request->hasFile('student_image')) {
+                // filename with extension
+                $fileNameWithExt = $request->file('student_image')->getClientOriginalName();
+                // filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                // extension
+                $extension = $request->file('student_image')->getClientOriginalExtension();
+                // filename to store
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
 
-            // if ($request->hasFile('student_image')) {
-            //     // filename with extension
-            //     $fileNameWithExt = $request->file('student_image')->getClientOriginalName();
-            //     // filename
-            //     $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            //     // extension
-            //     $extension = $request->file('student_image')->getClientOriginalExtension();
-            //     // filename to store
-            //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
-
-            //     $some_random = rand(111,9999);
-            //     // dd($some_random);
-            //     // upload file
-            //     $path = $request->file('student_image')->storeAs('public/files', $fileNameToStore);
-            //     // dd($path);
-            // }
-             //Upload Image
-             if($request->hasFile('student_image')){
-               $image_tmp = Input::file('student_image');
-                if($image_tmp->isValid()){
-
-                    $extension = $image_tmp->getClientOriginalExtension();
-                    $filename = rand(111,99999).'.'.$extension;
-                    $large_image_path = 'images/backend_images/products/large/'.$filename;
-                    $medium_image_path = 'images/backend_images/products/medium/'.$filename;
-                    $small_image_path = 'images/backend_images/products/small/'.$filename;
-
-                    //Resize images
-                    Image::make($image_tmp)->save($large_image_path);
-                    Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
-                    Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
-
-                    //Store image name in products table
-                    // $product->image = $filename;
-
-
-
-                }
+                //storage folder
+                $folder = 'images/students';
+                // upload file
+                $path = $request->file('student_image')->move($folder, $fileNameToStore);
             }
 
+            // dd($path);
             $student = Student::insert([
 
                 'first_name' => $data['first_name'],
@@ -132,7 +108,7 @@ class StudentController extends Controller
                 'school_last_attended' => $data['school_last_attended'],
                 'class_id' => $data['class_id'],
                 'sex' => $data['sex'],
-                'student_image' => $filename
+                'student_image' => $path
 
             ]);
 
@@ -213,9 +189,30 @@ class StudentController extends Controller
                 'school_last_attended' => 'min:5|max:100',
                 'class_id' => 'required|integer',
                 'sex' => 'required',
-                // 'student_image' => 'file'
+                'student_image' => 'mimes:jpg,jpeg,png,gif,svg'
             ]);
 
+            if ($request->hasFile('student_image')) {
+                // filename with extension
+                $fileNameWithExt = $request->file('student_image')->getClientOriginalName();
+                // filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                // extension
+                $extension = $request->file('student_image')->getClientOriginalExtension();
+                // filename to store
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+                //storage folder
+                $folder = 'images/students';
+                // upload file
+                $path = $request->file('student_image')->move($folder, $fileNameToStore);
+            }
+            // Incase no image was selected when trying to update student data, maintain the previous image.
+            if(empty($path)){
+                $thepath = Student::where(['id'=>$id])->first();
+                $get_path = $thepath->student_image;
+                $path = $get_path;
+            }
             $student = Student::where(['id'=>$id])->update([
 
                 'first_name' => $data['first_name'],
@@ -232,6 +229,7 @@ class StudentController extends Controller
                 'school_last_attended' => $data['school_last_attended'],
                 'class_id' => $data['class_id'],
                 'sex' => $data['sex'],
+                'student_image' => $path
             ]);
 
             if($student)

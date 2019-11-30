@@ -192,7 +192,7 @@
                               <i class="fa fa-envelope"></i>
                             </div>
                             <label>Student Email(Optional)</label>
-                            <input type="email" value="{{ $student->student_email }}" placeholder="student email" name="student_email" required="" class="form-control">
+                            <input type="email" value="{{ $student->student_email }}" placeholder="student email" name="student_email" class="form-control">
                           </div>
                         <!-- /.input group -->
                         </div>
@@ -241,7 +241,7 @@
                               <i class="fa fa-profile"></i>
                             </div>
                             <label>Student Profile Picture(Optional)</label>
-                            <input type="file" name="student_image" class="form-control" >
+                            <input type="file" value="{{ $student->student_image }}" name="student_image" class="form-control" >
                           </div>
                         <!-- /.input group -->
                         </div>

@@ -59,7 +59,7 @@
                                 <td>{{ $student->full_name }}</td>
                                 <td>{{ $student->studentClass->name }}</td>
                                 <td>{{ $student->student_phone }}</td>
-                                <td><img src="{{asset('public/files/'.$student->student_image) }}"></td>
+                                <td><img src="{{ asset($student->student_image) }}" alt="upload image." class="img-circle" height=60px width=60px></td>
                                 <td>{{ $student->date_of_birth }}</td>
                                 <td>
                                     <a href="{{ url('admin/students/'.$student->id) }}" title="View Student Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
@@ -108,20 +108,4 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  <script>
-    $(function () {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-      })
-    })
-  </script>
-
-
 @endsection

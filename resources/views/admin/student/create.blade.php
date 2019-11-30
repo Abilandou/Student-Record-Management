@@ -31,7 +31,6 @@
               <form action="{{ url('admin/students') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="container">
-
                   <div class="row">
                     <div class="col-sm-12 col-md-12">
                       <div class="col-sm-5 col-md-5">
