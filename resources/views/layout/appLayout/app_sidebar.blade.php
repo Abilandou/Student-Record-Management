@@ -41,6 +41,8 @@
           <li><a href="{{ url('admin/students') }}"><i class="fa fa-circle-o"></i> Students</a></li>
           <li><a href="{{url('admin/subjects')}}"><i class="fa fa-circle-o"></i> Subjects</a></li>
           <li><a href="{{ url('admin/teachers') }}"><i class="fa fa-circle-o"></i> Teachers</a></li>
+          <li><a href="{{ url('admin/sequences') }}"><i class="fa fa-circle-o"></i> Sequences</a></li>
+          <li><a href="{{ url('admin/terms') }}"><i class="fa fa-circle-o"></i> Terms</a></li>
           <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
         </ul>
       </li>

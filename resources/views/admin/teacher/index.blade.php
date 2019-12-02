@@ -29,15 +29,14 @@
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped table-hoverable">
                     <thead>
-                        <tr>
+                    <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Address</th>
                         <th>Profile</th>
                         <th>Actions</th>
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
                         @if(count($teachers) > 0)
@@ -47,9 +46,8 @@
                                     <td>{{ $teacher->full_name }}</td>
                                     <td>{{ $teacher->email }}</td>
                                     <td>{{ $teacher->phone }}</td>
-                                    <td>{{ $teacher->address }}</td>
                                     <td><img src="{{ asset($teacher->teacher_image) }}" alt="upload image." class="img-circle" height=60px width=60px></td>
-                                    <td>
+                                    <td class='center'>
                                         <a href="{{ url('admin/teachers/'.$teacher->id) }}" title="View Teacher's Details" class="btn btn-success btn-mini"><i class="glyphicon glyphicon-eye-open"></i></a>
                                         <button data-toggle="modal" data-target="#modal-default{{ $teacher->id }}" title="Edit Teacher's Information" class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-pencil"></i></button>
                                         <form action="{{ url('admin/teachers/'.$teacher->id) }}" method="post">
@@ -128,7 +126,6 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
-                      <th>Address</th>
                       <th>Profile</th>
                       <th>Actions</th>
                     </tr>

@@ -62,6 +62,8 @@ Route::group(['middleware' => ['principal']], function () {
         Route::get('class-remove-subject/{id}', 'ClassSubjectController@removeSubject');
         Route::post('student-assign-subject/', 'StudentSubjectController@assignSubjects');
         Route::get('student-remove-subject/{id}', 'StudentSubjectController@removeSubject');
+        Route::resource('terms', 'TermController');
+        Route::resource('sequences', 'SequenceController');
     });
 
 });

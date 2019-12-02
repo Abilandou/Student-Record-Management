@@ -36,8 +36,7 @@
                                                 <!-- small box -->
                                                 <div class="small-box">
                                                     <div class="inner">
-                                                    <img src="{{ $teacher->teacher_image }}" class="img-circle" title="STILL UNDER DEVELOPMENT" alt="User Image">
-                                                        <h4><a href="#" class="btn btn-default btn-mini" title="STILL UNDER DEVELOPMENT :)"><i class="glyphicon glyphicon-edit"></i>Edit profile...</a></h4>
+                                                        <img src="{{ asset($teacher->teacher_image) }}" alt="upload image." class="img-circle" height=120px width=120px>
                                                     </div>
                                                 </div>
                                             </div>

@@ -68,11 +68,11 @@ class TeacherController extends Controller
 
             //Handle image upload for teacher
             if($request->hasFile('teacher_image')){
-                // dd($request->file('teacher_image'));
-                 // filename with extension
-                 $fileNameWithExt = $request->file('teacher_image')->getClientOriginalName();
-                 // filename
-                 $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                // filename with extension
+                $fileNameWithExt = $request->file('teacher_image')->getClientOriginalName();
+                // filename
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                            
                  // extension
                  $extension = $request->file('teacher_image')->getClientOriginalExtension();
                  // filename to store
